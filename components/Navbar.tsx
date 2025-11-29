@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
           shadow-[0_0_20px_-5px_rgba(0,0,0,0.3)] 
         `}
       >
-        {/* Subtle Gradient Line for Aesthetic */}
+        {/* Subtle Gradient Line */}
         <div className={`absolute inset-0 rounded-full transition-opacity duration-500 pointer-events-none ${isVisible && !isOpen ? 'opacity-100' : 'opacity-0'}`}>
            <div className="absolute inset-x-0 -top-px h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
@@ -66,24 +66,40 @@ const Navbar: React.FC = () => {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav - MAIN LOGIC HERE */}
           <div className={`hidden md:flex items-center gap-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
-                className={({ isActive }) =>
-                  `relative px-4 py-2 text-sm font-medium transition-all group overflow-hidden`
-                }
+                className="relative px-4 py-2 text-sm font-medium transition-all group overflow-hidden"
               >
                 {({ isActive }) => (
                   <>
-                    <span className={`block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[150%] ${isActive ? 'text-amber-500' : 'text-zinc-400'}`}>
+                    {/* 1. Normal Text (Sans) */}
+                    {/* Logic: Agar Active hai YA Hover kiya, toh ye upar chala jayega (Hide ho jayega) */}
+                    <span className={`
+                      block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] text-zinc-400
+                      ${isActive ? '-translate-y-[150%]' : 'group-hover:-translate-y-[150%]'}
+                    `}>
                       {link.label}
                     </span>
-                    <span className={`absolute top-0 left-0 w-full h-full flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-[150%] group-hover:translate-y-0 text-white`}>
+                    
+                    {/* 2. Fancy Text (Serif) */}
+                    {/* Logic: Agar Active hai YA Hover kiya, toh ye samne aa jayega (Show ho jayega) */}
+                    <span className={`
+                      absolute top-0 left-0 w-full h-full flex items-center justify-center 
+                      transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] 
+                      font-serif italic tracking-wide
+                      ${isActive 
+                        ? 'translate-y-0 text-amber-500' // Active: Visible & Amber Color
+                        : 'translate-y-[150%] group-hover:translate-y-0 text-white' // Inactive: Hidden -> White on Hover
+                      }
+                    `}>
                       {link.label}
                     </span>
+
+                    {/* Active Dot (Optional - rakhna hai toh rakho, warna hata sakte ho) */}
                     {isActive && (
                       <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-amber-500 rounded-full shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span>
                     )}
@@ -125,7 +141,7 @@ const Navbar: React.FC = () => {
                 className={({ isActive }) =>
                   `text-xl p-3 rounded-xl transition-all flex justify-between items-center group ${
                     isOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-                  } ${isActive ? 'bg-amber-500/10 text-amber-500' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`
+                  } ${isActive ? 'bg-amber-500/10 text-amber-500 font-serif italic' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`
                 }
               >
                 {link.label}

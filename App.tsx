@@ -10,6 +10,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
+// import SmoothScroll from './SmoothScroll';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -23,6 +24,7 @@ const ScrollToTop = () => {
 
 const App: React.FC = () => {
   return (
+    
     <HashRouter>
       <div className="relative min-h-screen text-slate-100 selection:bg-purple-500/30 selection:text-amber-400">
         {/* <CustomCursor /> */}
@@ -41,6 +43,7 @@ const App: React.FC = () => {
         <Footer />
       </div>
     </HashRouter>
+   
   );
 };
 

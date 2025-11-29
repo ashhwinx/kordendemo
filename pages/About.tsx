@@ -8,7 +8,6 @@ const COMPANY_INFO = {
   email: "contact@korden.tech"
 };
 
-// --- Custom Hooks ---
 
 const useOnScreen = (options = { threshold: 0.1, rootMargin: "0px" }) => {
   const ref = useRef(null);
@@ -40,7 +39,7 @@ const FadeIn = ({ children, delay = 0, className = "" }) => {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-800 ease-out transform ${className} ${
+      className={`transition-all duration-1000 ease-out transform ${className} ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
       style={{ transitionDelay: `${delay}ms` }}

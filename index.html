@@ -38,6 +38,26 @@
         -webkit-text-stroke: 1px rgba(245, 158, 11, 0.4);
         color: transparent;
       }
+      /* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
     </style>
   <script type="importmap">
 {
